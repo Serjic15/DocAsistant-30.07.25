@@ -1,0 +1,2259 @@
+/* CardioAssistant Pro - Обновлённые стили с панелью калькуляторов */
+/* ИСПРАВЛЕНО: Кардинально улучшена читаемость и контрастность дизайна вкладки "Мои пациенты" */
+:root {
+    --primary-color: #2E86AB;
+    --secondary-color: #A8DADC;
+    --success-color: #4CAF50;
+    --warning-color: #FF9800;
+    --danger-color: #E63946;
+    --dark-color: #1D3557;
+    --light-color: #F1FAEE;
+    --gray-light: #f8f9fa;
+    --gray-medium: #6c757d;
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transition-speed: 0.3s;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --calculators-panel-width: 420px;  /* Ширина раскрытой панели */
+    
+    /* КАРДИНАЛЬНО ИСПРАВЛЕННЫЕ ПЕРЕМЕННЫЕ для максимальной читаемости "Мои пациенты" */
+    --patients-primary: #2E86AB;
+    --patients-secondary: #28a745;
+    --patients-accent: #ffc107;
+    --patients-bg-primary: #ffffff;        /* Чистый белый фон */
+    --patients-bg-secondary: #f8f9fa;      /* Очень светлый серый */
+    --patients-bg-accent: #fff9e6;         /* Очень светлый желтый для избранных */
+    --patients-text-primary: #212529;      /* Темный текст для максимального контраста */
+    --patients-text-secondary: #495057;    /* Среднетемный текст */
+    --patients-text-muted: #6c757d;        /* Приглушенный но читаемый текст */
+    --patients-border: #dee2e6;
+    --patients-border-hover: #adb5bd;
+    --patients-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    --patients-shadow-hover: 0 3px 8px rgba(0,0,0,0.18);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: #f5f7fa;
+    color: var(--dark-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Medical Header */
+.medical-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.medical-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.medical-header p {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.header-info {
+    text-align: right;
+}
+
+.current-datetime {
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+/* НОВЫЕ СТИЛИ ДЛЯ ПАНЕЛИ АКТИВНЫХ КОНСУЛЬТАЦИЙ */
+.active-consultations-panel {
+    background: var(--patients-bg-primary);
+    border-bottom: 2px solid var(--patients-border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all var(--transition-speed) ease;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.active-consultations-header {
+    background: linear-gradient(135deg, var(--patients-primary) 0%, #246185 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.active-consultations-header .panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.active-consultations-header .panel-toggle {
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.active-consultations-header .panel-toggle:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.active-consultations-content {
+    padding: 1rem 1.5rem;
+    background: var(--patients-bg-primary);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.active-consultations-panel.collapsed .active-consultations-content {
+    display: none;
+}
+
+.no-active-consultations {
+    color: var(--patients-text-muted);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.active-consultation-item {
+    background: var(--patients-bg-secondary);
+    border: 2px solid var(--patients-border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.active-consultation-item:hover {
+    border-color: var(--patients-primary);
+    box-shadow: var(--patients-shadow-hover);
+    transform: translateY(-1px);
+}
+
+.active-consultation-item.active {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-color: var(--patients-primary);
+    box-shadow: var(--patients-shadow-hover);
+}
+
+.consultation-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: var(--patients-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.consultation-avatar .initials {
+    font-size: 0.9rem;
+}
+
+.consultation-status {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.consultation-status.active {
+    background: #28a745;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.consultation-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.consultation-info .patient-name {
+    font-weight: 600;
+    color: var(--patients-text-primary);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.25rem;
+}
+
+.consultation-info .consultation-time {
+    color: var(--patients-text-muted);
+    font-size: 0.8rem;
+}
+
+.consultation-actions {
+    display: flex;
+    align-items: center;
+}
+
+.btn-close-consultation {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.7rem;
+}
+
+.btn-close-consultation:hover {
+    background: #c82333;
+    transform: scale(1.1);
+}
+
+/* Navigation Breadcrumbs */
+.breadcrumb {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "→";
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--dark-color);
+    transform: translateX(2px);
+}
+
+.breadcrumb-item.active {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+/* ОСНОВНЫЕ ИЗМЕНЕНИЯ: Main Container с поддержкой сдвига для панели калькуляторов */
+.main-container {
+    flex: 1;
+    padding-right: 100px; /* Базовый отступ для свернутой панели */
+    max-width: 100%;
+    transition: all var(--transition-speed) ease;
+}
+
+/* НОВОЕ: Класс для сдвига контента при открытой панели калькуляторов */
+.main-container.calculators-open {
+    padding-right: calc(var(--calculators-panel-width) + 20px); /* Сдвиг для раскрытой панели */
+}
+
+/* ИСПРАВЛЕНО: Calculators Panel - полностью по высоте экрана */
+.calculators-panel {
+    position: fixed;
+    right: 1.5rem;
+    top: 140px; /* Под хедером */
+    bottom: 0; /* ИЗМЕНЕНО: Доходит до самого низа */
+    width: 60px; /* Свернутое состояние */
+    height: calc(100vh - 140px); /* ИЗМЕНЕНО: Полная высота минус хедер */
+    background: transparent; /* Прозрачный фон */
+    border: none; /* Без рамки */
+    border-radius: 12px;
+    box-shadow: none; /* Без тени в свернутом состоянии */
+    overflow: hidden; /* Скрываем контент в свернутом состоянии */
+    z-index: 50;
+    transition: all var(--transition-speed) ease;
+    padding: 0; /* Убираем все отступы */
+}
+
+/* ИСПРАВЛЕНО: Раскрытое состояние панели калькуляторов */
+.calculators-panel.expanded {
+    width: var(--calculators-panel-width);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 2px solid var(--primary-color);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculators-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #246185 100%);
+    color: white;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* ИСПРАВЛЕНО: отступ между иконкой и текстом */
+    transition: all var(--transition-speed) ease;
+    min-height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    writing-mode: vertical-rl; /* Вертикальный текст в свернутом состоянии */
+    text-orientation: mixed;
+    justify-content: center; /* ИСПРАВЛЕНО: центрирование в свернутом состоянии */
+}
+
+/* ИСПРАВЛЕНО: иконка в заголовке */
+.calculators-header i {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+/* ИСПРАВЛЕНО: Горизонтальный текст в раскрытом состоянии */
+.calculators-panel.expanded .calculators-header {
+    writing-mode: horizontal-tb;
+    text-orientation: unset;
+    height: auto;
+    min-height: 60px;
+    border-radius: 0;
+    box-shadow: none;
+    justify-content: flex-start; /* ИСПРАВЛЕНО: выравнивание в раскрытом состоянии */
+}
+
+.calculators-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.calculators-header:hover::before {
+    left: 100%;
+}
+
+.calculators-content {
+    display: none; /* Скрыто в свернутом состоянии */
+    flex: 1; /* ИСПРАВЛЕНО: занимает всё доступное пространство */
+    overflow-y: auto; /* Вертикальная прокрутка */
+    overflow-x: hidden; /* ИСПРАВЛЕНО: убираем горизонтальную прокрутку */
+    padding: 0;
+    height: calc(100vh - 200px); /* ИЗМЕНЕНО: Полная высота минус хедер и заголовок панели */
+    /* ИСПРАВЛЕНО: убираем визуальный скроллбар */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* ИСПРАВЛЕНО: скрываем скроллбар для Webkit браузеров */
+.calculators-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* ИСПРАВЛЕНО: Показываем контент в раскрытом состоянии */
+.calculators-panel.expanded .calculators-content {
+    display: block;
+    animation: fadeInContent 0.4s ease-out;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Schedule Grid - Improved */
+.schedule-grid {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.schedule-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #246185 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.schedule-body {
+    padding: 0;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+.schedule-table th {
+    background: var(--gray-light);
+    color: var(--dark-color);
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.schedule-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    transition: all var(--transition-speed) ease;
+    vertical-align: middle;
+}
+
+.schedule-row:hover td {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.patient-info-cell {
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.patient-info-cell:hover {
+    transform: translateX(5px);
+}
+
+.patient-name {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+}
+
+.patient-details {
+    font-size: 0.9rem;
+    color: var(--gray-medium);
+}
+
+.appointment-time {
+    background: linear-gradient(135deg, var(--success-color) 0%, #45a049 100%);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.appointment-type {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.appointment-primary {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    color: #1976d2;
+    border: 1px solid #90caf9;
+}
+
+.appointment-secondary {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    color: #7b1fa2;
+    border: 1px solid #ce93d8;
+}
+
+/* Action Buttons in Schedule */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.action-buttons .btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: all var(--transition-speed) ease;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Patient Card Header - Enhanced */
+.patient-card-header {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.patient-card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.patient-card-header > * {
+    position: relative;
+    z-index: 2;
+}
+
+.patient-card-header h2 {
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.patient-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.patient-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255,255,255,0.1);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+}
+
+.patient-info-item i {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    width: 24px;
+    text-align: center;
+}
+
+/* Patient Actions */
+.patient-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.patient-actions .btn-lg {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all var(--transition-speed) ease;
+}
+
+.patient-actions .btn-lg:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Cards with Hover Effects */
+.card-hover {
+    transition: all var(--transition-speed) ease;
+    border: none;
+    box-shadow: var(--box-shadow);
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+    background: white;
+    border: none;
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    gap: 0.5rem;
+    border-radius: 12px 12px 0 0;
+}
+
+.nav-tabs .nav-link {
+    color: var(--gray-medium);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    background: var(--gray-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-tabs .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-tabs .nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-tabs .nav-link:hover {
+    background: var(--secondary-color);
+    color: var(--dark-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.nav-tabs .nav-link.active {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #246185 100%);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(46, 134, 171, 0.3);
+}
+
+.nav-tabs .nav-link i {
+    margin-right: 0.5rem;
+}
+
+/* Tab Content */
+.tab-content {
+    background: white;
+    padding: 2rem;
+    min-height: 600px;
+    box-shadow: var(--box-shadow);
+    border-radius: 0 0 12px 12px;
+    position: relative;
+}
+
+/* ==================== КАРДИНАЛЬНО ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ "МОИ ПАЦИЕНТЫ" ==================== */
+/* МАКСИМАЛЬНАЯ ЧИТАЕМОСТЬ И КОНТРАСТНОСТЬ */
+
+/* Контейнер вкладки - чистый фон */
+.my-patients-container {
+    padding: 0;
+    background: transparent;
+}
+
+/* ИСПРАВЛЕНО: Заголовок - чистый дизайн с максимальной читаемостью */
+.my-patients-header {
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    color: var(--patients-text-primary); /* Темный текст */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--patients-shadow);
+    border: 1px solid var(--patients-border);
+}
+
+.my-patients-header h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--patients-text-primary); /* Темный текст для максимального контраста */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.my-patients-header h3 i {
+    color: var(--patients-primary); /* Синяя иконка */
+}
+
+.my-patients-header p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--patients-text-secondary); /* Читаемый темный текст */
+    font-weight: 500;
+}
+
+/* ИСПРАВЛЕНО: Статистические карточки - чистый дизайн с максимальной читаемостью */
+.my-patients-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.stat-item {
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    border: 2px solid var(--patients-border);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--patients-shadow);
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--patients-shadow-hover);
+    border-color: var(--patients-primary);
+}
+
+.stat-item.starred-stat {
+    background: var(--patients-bg-accent); /* Очень светлый желтый фон */
+    border-color: var(--patients-accent);
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800; /* Очень жирный шрифт */
+    color: var(--patients-text-primary); /* Темный текст для максимального контраста */
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-item.starred-stat .stat-value {
+    color: #b8860b; /* Темно-золотой цвет для контраста на светло-желтом фоне */
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--patients-text-secondary); /* Читаемый темный текст */
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.stat-item.starred-stat .stat-label {
+    color: #996515; /* Еще темнее для желтого фона */
+}
+
+/* ИСПРАВЛЕНО: Панель поиска - чистый дизайн */
+.my-patients-search-panel {
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--patients-shadow);
+    border: 1px solid var(--patients-border);
+}
+
+.search-group .input-group {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--patients-border);
+}
+
+.search-group .input-group-text {
+    background: var(--patients-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.search-group .form-control {
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    color: var(--patients-text-primary); /* Темный текст */
+    font-weight: 500;
+}
+
+.search-group .form-control:focus {
+    box-shadow: none;
+    border: none;
+    background: var(--patients-bg-primary);
+    color: var(--patients-text-primary);
+}
+
+.search-group .form-control::placeholder {
+    color: var(--patients-text-muted); /* Читаемый цвет плейсхолдера */
+}
+
+.search-group .btn {
+    border: none;
+    background: var(--danger-color);
+    color: white;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.search-group .btn:hover {
+    background: #c82333;
+}
+
+.filter-group .form-label {
+    font-weight: 700;
+    color: var(--patients-text-primary); /* Темный текст */
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.filter-group .form-select {
+    border: 2px solid var(--patients-border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    color: var(--patients-text-primary); /* Темный текст */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.filter-group .form-select:focus {
+    border-color: var(--patients-primary);
+    box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.2);
+    background: var(--patients-bg-primary);
+    color: var(--patients-text-primary);
+}
+
+/* ИСПРАВЛЕНО: Панель действий - чистый дизайн */
+.action-panel {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--patients-border);
+    margin-top: 1.5rem;
+}
+
+.action-panel .btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--patients-shadow);
+    font-size: 0.9rem;
+}
+
+.action-panel .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--patients-shadow-hover);
+}
+
+.action-panel .btn-primary {
+    background: var(--patients-primary);
+    color: white;
+}
+
+.action-panel .btn-secondary {
+    background: var(--gray-medium);
+    color: white;
+}
+
+.action-panel .btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+/* ИСПРАВЛЕНО: Карточки пациентов - максимальная читаемость */
+.my-patients-list {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.patient-card {
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    border: 2px solid var(--patients-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: var(--patients-shadow);
+    position: relative;
+}
+
+.patient-card:hover {
+    border-color: var(--patients-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--patients-shadow-hover);
+}
+
+.patient-card.starred {
+    background: var(--patients-bg-accent); /* Очень светлый желтый фон */
+    border-color: var(--patients-accent);
+}
+
+.patient-card.starred:hover {
+    border-color: #b8860b;
+}
+
+/* ИСПРАВЛЕНО: Звездочка пациента - четкая и видимая */
+.patient-card-star {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.4rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--patients-bg-primary);
+}
+
+.patient-card-star:hover {
+    color: var(--patients-accent);
+    background: var(--patients-bg-accent);
+    transform: scale(1.2);
+}
+
+.patient-card-star.active {
+    color: var(--patients-accent);
+    background: var(--patients-bg-accent);
+}
+
+/* ИСПРАВЛЕНО: Заголовок карточки - максимальная читаемость */
+.patient-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    padding-right: 2.5rem; /* Место для звездочки */
+}
+
+.patient-card-name {
+    font-size: 1.2rem;
+    font-weight: 700; /* Очень жирный шрифт */
+    color: var(--patients-text-primary); /* Темный текст для максимального контраста */
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.patient-card-info {
+    color: var(--patients-text-secondary); /* Читаемый темный текст */
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.patient-card-date {
+    background: var(--patients-bg-secondary); /* Светло-серый фон */
+    color: var(--patients-text-primary); /* Темный текст */
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    border: 1px solid var(--patients-border);
+}
+
+/* ИСПРАВЛЕНО: Тело карточки - четкое разделение информации */
+.patient-card-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.patient-card-item {
+    background: var(--patients-bg-secondary); /* Светло-серый фон */
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--patients-border);
+}
+
+.patient-card-label {
+    font-size: 0.7rem;
+    color: var(--patients-text-muted); /* Читаемый приглушенный текст */
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.patient-card-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--patients-text-primary); /* Темный текст для максимального контраста */
+    line-height: 1.3;
+}
+
+/* ИСПРАВЛЕНО: Действия карточки - четкие кнопки */
+.patient-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--patients-border);
+}
+
+.patient-card-actions .btn {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    box-shadow: var(--patients-shadow);
+}
+
+.patient-card-actions .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--patients-shadow-hover);
+}
+
+.patient-card-actions .btn-primary {
+    background: var(--patients-primary);
+    color: white;
+}
+
+.patient-card-actions .btn-success {
+    background: var(--patients-secondary);
+    color: white;
+}
+
+.patient-card-actions .btn-outline-info {
+    background: var(--patients-bg-primary);
+    color: var(--patients-primary);
+    border: 2px solid var(--patients-primary);
+}
+
+.patient-card-actions .btn-outline-info:hover {
+    background: var(--patients-primary);
+    color: white;
+}
+
+/* ИСПРАВЛЕНО: Сообщение "Пациенты не найдены" - четкое и читаемое */
+.no-patients-found {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    border-radius: 10px;
+    border: 2px solid var(--patients-border);
+    box-shadow: var(--patients-shadow);
+}
+
+.no-patients-found i {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--patients-text-muted);
+}
+
+.no-patients-found h5 {
+    color: var(--patients-text-primary); /* Темный текст */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.no-patients-found p {
+    color: var(--patients-text-secondary); /* Читаемый темный текст */
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.no-patients-found .btn {
+    background: var(--patients-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--patients-shadow);
+}
+
+.no-patients-found .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--patients-shadow-hover);
+}
+
+/* ИСПРАВЛЕНО: Навигация назад - четкая и читаемая */
+.back-navigation {
+    margin-bottom: 1.5rem;
+}
+
+.back-navigation .btn {
+    background: var(--patients-bg-primary); /* Чистый белый фон */
+    border: 2px solid var(--patients-border);
+    color: var(--patients-text-primary); /* Темный текст */
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--patients-shadow);
+    font-size: 1rem;
+}
+
+.back-navigation .btn:hover {
+    background: var(--patients-primary);
+    color: white;
+    border-color: var(--patients-primary);
+    transform: translateX(-3px);
+    box-shadow: var(--patients-shadow-hover);
+}
+
+/* Autofill Panel - Enhanced */
+.autofill-panel {
+    position: fixed;
+    right: -420px;
+    top: 120px;
+    width: 400px;
+    max-height: calc(100vh - 140px);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px 0 0 12px;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+    transition: right var(--transition-speed) ease;
+    overflow-y: auto;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.autofill-panel.active {
+    right: 0;
+}
+
+.autofill-header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #246185 100%);
+    color: white;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.autofill-close, .autofill-pin {
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.8;
+    transition: all var(--transition-speed) ease;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+.autofill-close:hover, .autofill-pin:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.1);
+    transform: scale(1.1);
+}
+
+.autofill-content {
+    padding: 20px;
+}
+
+.autofill-item {
+    padding: 12px 15px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    border-radius: var(--border-radius);
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.autofill-item:hover {
+    background: linear-gradient(135deg, var(--light-color) 0%, var(--secondary-color) 100%);
+    border-color: var(--primary-color);
+    transform: translateX(8px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Form Sections - Enhanced */
+.form-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed) ease;
+}
+
+.form-section:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+
+.form-section h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.form-section h3::before {
+    content: '';
+    width: 4px;
+    height: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #246185 100%);
+    border-radius: 2px;
+}
+
+/* Form Controls - Enhanced */
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.form-label .required {
+    color: var(--danger-color);
+    margin-left: 0.25rem;
+    font-weight: 700;
+}
+
+.form-control, .form-select {
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    padding: 0.8rem 1rem;
+    transition: all var(--transition-speed) ease;
+    background: white;
+    font-size: 0.95rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(46, 134, 171, 0.15);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+/* Buttons - Enhanced */
+.btn {
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #246185 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(46, 134, 171, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #246185 0%, #1a4e6b 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 134, 171, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success-color) 0%, #45a049 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger-color) 0%, #c62828 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--gray-medium) 0%, #5a6268 100%);
+    color: white;
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--gray-light);
+}
+
+.form-actions .btn {
+    min-width: 150px;
+}
+
+/* МКБ-10 Классификатор - Enhanced */
+.icd-classifier {
+    position: fixed;
+    right: -450px;
+    top: 100px;
+    width: 430px;
+    max-height: calc(100vh - 120px);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px 0 0 12px;
+    box-shadow: -4px 0 25px rgba(0,0,0,0.2);
+    transition: right var(--transition-speed) ease;
+    overflow: hidden;
+    z-index: 200;
+    backdrop-filter: blur(10px);
+}
+
+.icd-classifier.active {
+    right: 0;
+}
+
+.icd-header {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #0f2438 100%);
+    color: white;
+    padding: 18px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.icd-close {
+    cursor: pointer;
+    font-size: 20px;
+    opacity: 0.8;
+    transition: all var(--transition-speed) ease;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+.icd-close:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.1);
+    transform: scale(1.1);
+}
+
+.icd-search {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.icd-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    transition: all var(--transition-speed) ease;
+}
+
+.icd-search-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+}
+
+.icd-list {
+    max-height: calc(100vh - 280px);
+    overflow-y: auto;
+}
+
+.icd-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.icd-item:hover {
+    background: linear-gradient(135deg, var(--light-color) 0%, var(--secondary-color) 100%);
+    transform: translateX(5px);
+}
+
+.icd-code {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+.icd-description {
+    font-size: 13px;
+    color: #4a5568;
+    line-height: 1.4;
+}
+
+/* Research Interface - Enhanced */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.research-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+}
+
+.research-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    border-color: var(--primary-color);
+}
+
+.research-card h5 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Loading и уведомления - Enhanced */
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+#loadingOverlay.show {
+    display: flex;
+}
+
+.notification-toast {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    min-width: 350px;
+    z-index: 1002;
+    animation: slideInBounce 0.5s ease-out;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+}
+
+.auto-save-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--success-color) 0%, #45a049 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    z-index: 1001;
+    animation: slideInBounce 0.5s ease-out;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes slideInBounce {
+    0% {
+        transform: translateX(100%) scale(0.8);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(-10px) scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Footer - Enhanced */
+.footer-info {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #0f2438 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.footer-info > * {
+    position: relative;
+    z-index: 2;
+}
+
+.footer-info a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+}
+
+.footer-info a:hover {
+    color: white;
+    text-shadow: 0 0 8px rgba(168, 218, 220, 0.5);
+}
+
+/* СТИЛИ ДЛЯ СОДЕРЖИМОГО ПАНЕЛИ КАЛЬКУЛЯТОРОВ */
+
+/* Обертка для всего контента калькуляторов */
+.calculators-wrapper {
+    padding: 15px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Скрываем скроллбар */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Скрываем скроллбар для Webkit браузеров */
+.calculators-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* Поисковая строка - НЕ зафиксирована при скролле */
+.search-container {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    z-index: 20;
+    padding: 15px;
+    margin: -15px -15px 15px -15px;
+    border-bottom: 2px solid var(--primary-color);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.search-input-wrapper {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.15);
+    transform: translateY(-1px);
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #6c757d;
+    pointer-events: none;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+}
+
+.no-results p {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.no-results small {
+    font-size: 13px;
+}
+
+/* Контейнеры калькуляторов */
+.calculator-container {
+    width: 100%;
+    margin-bottom: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    box-sizing: border-box;
+}
+
+.calculator-container:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(46, 134, 171, 0.15);
+    transform: translateY(-2px);
+}
+
+.calculator-title {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 12px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    border-bottom: 2px solid #e2e8f0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.calculator-title:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    transform: translateX(3px);
+}
+
+/* ИКОНКИ В СТИЛЕ КАЛЕНОГО ЖЕЛЕЗА - обновлённые */
+.calculator-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.calculator-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(255,255,255,0.2) 100%);
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.calculator-title:hover .calculator-icon::before {
+    opacity: 1;
+}
+
+.calculator-title:hover .calculator-icon {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* Специфические цвета для каждого калькулятора */
+.hot-iron-calc {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hot-iron-score {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #8e2de2 100%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hot-iron-heart {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #a93226 100%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hot-iron-drop {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 50%, #7d3c98 100%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hot-iron-kidney {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 50%, #1e8449 100%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hot-iron-kidney2 {
+    background: linear-gradient(135deg, #16a085 0%, #138d75 50%, #117a65 100%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hot-iron-heart-pulse {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 50%, #d35400 100%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.calculator-title-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    font-weight: 600;
+}
+
+.collapse-icon {
+    color: var(--primary-color);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.calculator-container.expanded .collapse-icon {
+    transform: rotate(90deg);
+    color: var(--danger-color);
+}
+
+.calculator-content {
+    display: none;
+    padding: 18px;
+    font-size: 13px;
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.calculator-container.expanded .calculator-content {
+    display: block;
+    animation: expandContent 0.3s ease-out;
+}
+
+@keyframes expandContent {
+    from {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+}
+
+.calc-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.calc-label {
+    min-width: 160px;
+    font-weight: 600;
+    font-size: 12px;
+    margin: 0;
+    color: var(--dark-color);
+}
+
+.calc-input, .calc-select {
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    width: 90px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.calc-input:focus, .calc-select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.15);
+    transform: translateY(-1px);
+}
+
+.unit {
+    font-size: 12px;
+    color: var(--gray-medium);
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.calc-result {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 18px 0 12px 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    color: var(--dark-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.add-to-protocol-btn {
+    background: linear-gradient(135deg, var(--success-color) 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(76, 175, 80, 0.3);
+}
+
+.add-to-protocol-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+}
+
+.add-to-protocol-btn:disabled {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Чекбоксы для калькуляторов */
+.calc-label input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    accent-color: var(--primary-color);
+}
+
+/* Responsive Design - Enhanced */
+@media (max-width: 1400px) {
+    /* Когда экран становится уже, убираем сдвиг для больших экранов */
+    .main-container.calculators-open {
+        padding-right: 100px; /* Возвращаем базовый отступ */
+    }
+    
+    /* Панель калькуляторов накладывается поверх контента */
+    .calculators-panel.expanded {
+        z-index: 1000;
+        box-shadow: 0 0 50px rgba(0,0,0,0.3);
+    }
+}
+
+@media (max-width: 768px) {
+    .medical-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-tabs {
+        flex-wrap: wrap;
+        padding: 0.5rem;
+    }
+    
+    .nav-tabs .nav-link {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .tab-content {
+        padding: 1rem;
+    }
+
+    /* Мобильная версия панели калькуляторов */
+    .calculators-panel {
+        position: relative;
+        width: 100%;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        margin-bottom: 2rem;
+        border-radius: 12px;
+        /* Восстанавливаем фон и тень на мобильных */
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border: 2px solid #e2e8f0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        height: 500px; /* Фиксированная высота на мобильных */
+    }
+    
+    /* Нормализуем заголовок на мобильных */
+    .calculators-header {
+        writing-mode: horizontal-tb !important;
+        text-orientation: unset !important;
+        height: auto !important;
+        border-radius: 0 !important;
+        min-height: 60px;
+        justify-content: flex-start !important;
+        gap: 10px;
+    }
+
+    .calculators-panel.expanded {
+        width: 100%;
+        height: 500px; /* Сохраняем фиксированную высоту */
+    }
+    
+    /* Контент калькуляторов на мобильных всегда показан */
+    .calculators-content {
+        display: block !important;
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: auto !important; /* Убираем фиксированную высоту на мобильных */
+    }
+    
+    /* Отключаем сдвиг на мобильных */
+    .main-container.calculators-open {
+        padding-right: 100px;
+    }
+    
+    .main-container {
+        padding-right: 0;
+    }
+
+    .autofill-panel, .icd-classifier {
+        width: 100%;
+        right: -100%;
+        border-radius: 0;
+    }
+
+    .autofill-panel.active, .icd-classifier.active {
+        right: 0;
+    }
+
+    .patient-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .breadcrumb {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Уменьшаем размеры элементов калькуляторов на мобильных */
+    .calc-input, .calc-select {
+        width: 80px;
+    }
+    
+    .calc-label {
+        min-width: 140px;
+        font-size: 11px;
+    }
+
+    /* ИСПРАВЛЕНО: Мобильные стили для вкладки "Мои пациенты" - максимальная читаемость */
+    .my-patients-header {
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .my-patients-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .my-patients-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 1.25rem;
+    }
+
+    .stat-item {
+        padding: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+    }
+
+    .my-patients-search-panel {
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .patient-card {
+        padding: 1rem;
+    }
+
+    .patient-card-header {
+        padding-right: 2rem;
+    }
+
+    .patient-card-body {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .patient-card-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .action-panel {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .action-panel .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Панель активных консультаций на мобильных */
+    .active-consultations-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .active-consultation-item {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+/* Animations - Enhanced */
+.fade-in {
+    animation: fadeInSmooth 0.6s ease-in;
+}
+
+@keyframes fadeInSmooth {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUpBounce 0.6s ease-out;
+}
+
+@keyframes slideUpBounce {
+    0% {
+        transform: translateY(30px) scale(0.95);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-5px) scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Focus and Accessibility */
+*:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.2);
+}
+
+/* Печать */
+@media print {
+    .no-print, 
+    .nav-tabs, 
+    .form-actions, 
+    .calculators-panel, 
+    .autofill-panel, 
+    .icd-classifier,
+    .breadcrumb,
+    .action-buttons,
+    .active-consultations-panel {
+        display: none !important;
+    }
+    
+    .medical-header {
+        background: none !important;
+        color: black !important;
+    }
+    
+    .tab-content {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .form-section {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .main-container {
+        padding-right: 0 !important;
+    }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #246185 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #246185 0%, #1a4e6b 100%);
+}
+
+/* Selection */
+::selection {
+    background: rgba(46, 134, 171, 0.2);
+    color: var(--dark-color);
+}
